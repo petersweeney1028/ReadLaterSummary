@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Read Later Summary",
+    "version": "1.0",
+    "permissions": ["tabs", "storage", "activeTab", "notifications"],
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ]
+  }
+  
