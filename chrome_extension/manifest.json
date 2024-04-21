@@ -2,7 +2,13 @@
     "manifest_version": 3,
     "name": "Read Later Summary",
     "version": "1.0",
-    "permissions": ["tabs", "storage", "activeTab", "notifications"],
+    "permissions": [
+        "activeTab",
+        "storage",
+        "tabs",
+        "<all_urls>",
+        "webNavigation"
+    ],
     "action": {
       "default_popup": "popup.html"
     },

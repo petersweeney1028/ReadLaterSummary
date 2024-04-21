@@ -1,7 +1,9 @@
 chrome.action.onClicked.addListener((tab) => {
     chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      files: ['content.js']
+        target: { tabId: tab.id },
+        files: ['content.js']
+    }, () => {
+        console.log('Script injected into:', tab.url);
     });
   
     // Optionally save page information when clicked
@@ -10,3 +12,12 @@ chrome.action.onClicked.addListener((tab) => {
     });
   });
   
+  chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if (request.type === "extractedData") {
+            console.log("Data received from content script", request.data);
+            // You can add code here to send the data to your server
+            sendResponse({status: "Data received"});
+        }
+    }
+);
