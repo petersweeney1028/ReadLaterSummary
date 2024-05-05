@@ -1,8 +1,10 @@
 import express from 'express';
 import passport from 'passport';
 import session from 'express-session';
-import { OAuth2Strategy as GoogleStrategy } from 'passport-google-oauth';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
 
 // Configure Passport for Google OAuth
