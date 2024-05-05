@@ -39,7 +39,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   (req, res) => {
     // Successful authentication
-    res.redirect('/dashboard.html');
+    res.redirect('https://read-later-frontend-kpcsd91j0-peter-sweeneys-projects.vercel.app/dashboard.html');
   }
 );
 
