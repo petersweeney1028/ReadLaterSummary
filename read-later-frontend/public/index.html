@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Read Later Summary - Google Sign-In</title>
+  <meta name="google-signin-client_id" content="869110395015-fo4v47rhuf2504ocuv7uijkc66n0nhhn.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script>
+    function onSignIn(googleUser) {
+      const profile = googleUser.getBasicProfile();
+      const id_token = googleUser.getAuthResponse().id_token;
+
+      fetch('https://read-later-summary-e391515c4221.herokuapp.com/api/google-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id_token })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.user) {
+            localStorage.setItem('user', JSON.stringify(data.user));
+            window.location.href = '/dashboard.html';
+          } else {
+            alert('Authentication failed');
+          }
+        });
+    }
+  </script>
+  <style>
+    .g-signin2 {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Read Later Summary</h1>
+  <div class="g-signin2" data-theme="dark" data-onsuccess="onSignIn"></div>
+</body>
+</html>

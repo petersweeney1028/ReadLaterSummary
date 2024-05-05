@@ -2,6 +2,8 @@ import express from 'express';
 
 const app = express();
 
+setupAuth(app);
+
 app.use(express.json()); // Built-in Express middleware to parse JSON bodies
 
 // General request logging middleware
